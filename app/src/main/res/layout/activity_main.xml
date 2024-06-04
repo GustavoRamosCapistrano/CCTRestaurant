@@ -1,230 +1,364 @@
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="15dp">
+    android:layout_height="match_parent">
 
-
-    <!-- This is the Restaurant name -->
-
-    <TextView
-        android:id="@+id/headerTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="All You can Eat"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_gravity="center"
-        android:layout_marginBottom="15dp"/>
-
-    <!-- Create a Linear Layout for the product -->
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_marginBottom="15dp"
-        android:background="@android:drawable/dialog_holo_light_frame">
+        android:layout_height="match_parent"
+        android:layout_above="@id/checkoutButton">
 
-        <!-- Create Product info -->
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:orientation="vertical"
-            android:layout_marginLeft="10dp">
+            android:padding="15dp">
 
-            <TextView
-                android:id="@+id/pizza"
-                android:layout_width="160dp"
+        <!-- This is the Restaurant name -->
+        <TextView
+            android:id="@+id/headerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Choose Your Food"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="15dp"/>
+
+        <!-- Product 1 - Pizza -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            android:layout_marginBottom="15dp"
+            android:background="@android:drawable/dialog_holo_light_frame">
+
+            <!-- Product info -->
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Pizza"
-                android:textSize="20sp"/>
-            <TextView
-                android:id="@+id/pizzaDescription"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:id="@+id/Pizza"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Pizza"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/pizzaDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ingredients: Fresh Tomatoes, Fresh Black Olives.."
+                    android:textSize="15sp"
+                    android:layout_marginTop="5dp"/>
+
+                <TextView
+                    android:id="@+id/pizzaPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="€14.99"
+                    android:textSize="18sp"
+                    android:layout_marginTop="10dp"/>
+
+                <!-- Quantity buttons and TextView -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/increasePizzaQuantity"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:onClick="increasePizzaQuantity"
+                        android:text="+" />
+
+                    <TextView
+                        android:id="@+id/pizzaQuantityTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="18sp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp" />
+
+                    <Button
+                        android:id="@+id/decreasePizzaQuantity"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:onClick="decreasePizzaQuantity"
+                        android:text="-" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Product Image -->
+            <ImageView
+                android:id="@+id/pizzaImage"
+                android:layout_width="107dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:src="@drawable/pizza" />
+        </LinearLayout>
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ingredients: Fresh Tomatoes, Fresh Black Olvies.."
-                android:textSize="15sp"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:id="@+id/pizzaPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="€14.99"
-                android:textSize="18sp"
-                android:layout_marginTop="10dp"/>
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginBottom="15dp"
+                android:background="@android:drawable/dialog_holo_light_frame">
 
+                <!-- Product info -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp">
 
-            <!-- Add Functionality -->
-            <Button
-                android:id="@+id/buyPizza"
-                android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/hotDog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Hot Dog"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/hotDogDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ingredients: Bun, Sausiche, Ketchup, Mostard"
+                        android:textSize="15sp"
+                        android:layout_marginTop="5dp"/>
+
+                    <TextView
+                        android:id="@+id/hotDogPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="€10.99"
+                        android:textSize="18sp"
+                        android:layout_marginTop="10dp"/>
+
+                    <!-- Quantity buttons and TextView -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/increaseHotDogQuantityButton"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:onClick="increaseHotDogQuantity"
+                            android:text="+" />
+
+                        <TextView
+                            android:id="@+id/hotDogQuantityTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="18sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp" />
+
+                        <Button
+                            android:id="@+id/decreaseHotDogQuantityButton"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:onClick="decreaseHotDogQuantity"
+                            android:text="-" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Product Image -->
+                <ImageView
+                    android:id="@+id/hotDogImage"
+                    android:layout_width="107dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/hotdog" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Buy"
-                android:layout_marginTop="10dp"
-                android:onClick="buy"/>
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginBottom="15dp"
+                android:background="@android:drawable/dialog_holo_light_frame">
+
+                <!-- Product info -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/Burguer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Burguer"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/burguerDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Ingredients: American cheese, shredded iceberg lettuce, tomatoes and onions, dill pickle slices, ketchup, mustard and mayo"
+                        android:textSize="15sp"
+                        android:layout_marginTop="5dp"/>
+
+                    <TextView
+                        android:id="@+id/burguerPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="€12.99"
+                        android:textSize="18sp"
+                        android:layout_marginTop="10dp"/>
+
+                    <!-- Quantity buttons and TextView -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/increaseBurguerQuantityButton"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:onClick="increaseBurguerQuantity"
+                            android:text="+" />
+
+                        <TextView
+                            android:id="@+id/burguerQuantityTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="18sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp" />
+
+                        <Button
+                            android:id="@+id/decreaseBurguerQuantityButton"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:onClick="decreaseBurguerQuantity"
+                            android:text="-" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Product Image -->
+                <ImageView
+                    android:id="@+id/burguerImage"
+                    android:layout_width="107dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/burguer" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp"
+                android:layout_marginBottom="15dp"
+                android:background="@android:drawable/dialog_holo_light_frame">
+
+                <!-- Product info -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:layout_marginLeft="10dp">
+
+                    <TextView
+                        android:id="@+id/carbonara"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="Carbonara"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/carbonaraDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="guanciale (cured pork), eggs, Pecorino Romano cheese, spaghetti pasta, and lots of black pepper."
+                        android:textSize="15sp"
+                        android:layout_marginTop="5dp"/>
+
+                    <TextView
+                        android:id="@+id/carbonaraPricePrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="€19.99"
+                        android:textSize="18sp"
+                        android:layout_marginTop="10dp"/>
+
+                    <!-- Quantity buttons and TextView -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/increaseCarbonaraQuantityButton"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:onClick="increaseCarbonaraQuantity"
+                            android:text="+" />
+
+                        <TextView
+                            android:id="@+id/carbonaraQuantityTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textSize="18sp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp" />
+
+                        <Button
+                            android:id="@+id/decreaseCarbonaraQuantityButton"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:onClick="decreaseCarbonaraQuantity"
+                            android:text="-" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Product Image -->
+                <ImageView
+                    android:id="@+id/carbonaraImage"
+                    android:layout_width="107dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:src="@drawable/carbonara" />
+            </LinearLayout>
 
 
         </LinearLayout>
 
 
-        <!-- Add Product Image -->
-        <ImageView
-            android:id="@+id/pizzaImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/pizza"
-            android:layout_gravity="center"/>
 
+</ScrollView>
 
-
-
-
-
-
-    </LinearLayout>
-
-    <!-- Product 2 -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_marginBottom="15dp"
-        android:background="@android:drawable/dialog_holo_light_frame">
-
-        <!-- Create Product info -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginLeft="10dp">
-
-            <TextView
-                android:id="@+id/burger"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Burger"
-                android:textSize="20sp"/>
-            <TextView
-                android:id="@+id/burgerDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ingredients: Fresh Tomatoes, Fresh Lettuce and Cheddar Cheese"
-                android:textSize="15sp"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:id="@+id/burgerPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="€10.99"
-                android:textSize="18sp"
-                android:layout_marginTop="10dp"/>
-
-
-            <!-- Add Functionality -->
-
-            <Button
-                android:id="@+id/buyBurger"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Buy"
-                android:layout_marginTop="10dp"
-                android:onClick="buy"/>
-
-
-        </LinearLayout>
-
-
-        <!-- Add Product Image -->
-        <ImageView
-            android:id="@+id/burgerImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/burger"
-            android:layout_gravity="center"/>
-
-
-    </LinearLayout>
-
-    <!-- Product 3 -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        android:layout_marginBottom="15dp"
-        android:background="@android:drawable/dialog_holo_light_frame">
-
-        <!-- Create Product info -->
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginLeft="10dp">
-
-            <TextView
-                android:id="@+id/chicken"
-                android:layout_width="160dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="Chicken Box"
-                android:textSize="20sp"/>
-            <TextView
-                android:id="@+id/chickenDescription"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Ingredients: Freshly Fried Chicken Legs/ Wings"
-                android:textSize="15sp"
-                android:layout_marginTop="5dp"/>
-            <TextView
-                android:id="@+id/chickenPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="€15.99"
-                android:textSize="18sp"
-                android:layout_marginTop="10dp"/>
-
-
-            <!-- Add Functionality -->
-
-
-            <Button
-                android:id="@+id/buyChicken"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Buy"
-                android:layout_marginTop="10dp"
-                android:onClick="buy"/>
-
-        </LinearLayout>
-
-
-        <!-- Add Product Image -->
-        <ImageView
-            android:id="@+id/chickenImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/chicken"
-            android:layout_gravity="center"/>
-
-
-
-
-
-
-
-    </LinearLayout>
-
-
-
-
-
-</LinearLayout>
+    <!-- Checkout button -->
+    <Button
+        android:id="@+id/checkoutButton"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="Checkout: Total: €0.00"
+android:onClick="checkout"
+android:layout_alignParentBottom="true"/>
+    </RelativeLayout>
