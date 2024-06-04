@@ -84,6 +84,9 @@ public class MainActivity extends AppCompatActivity {
             quantityTextView.setText(String.valueOf(currentQuantity));
         }
     }
+    public void checkout (View view){
+
+    }
 }
 
 
