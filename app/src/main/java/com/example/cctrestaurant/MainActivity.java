@@ -1,115 +1,134 @@
 package com.example.cctrestaurant;
 
-import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
+    private int pizzaQuantity = 0;
+    private int hotDogQuantity = 0;
+    private int burgerQuantity = 0;
+    private int carbonaraQuantity = 0;
+
+    private double pizzaPrice = 14.99;
+    private double hotDogPrice = 10.99;
+    private double burgerPrice = 12.99;
+    private double carbonaraPrice = 19.99;
+
+    private TextView pizzaQuantityTextView;
+    private TextView hotDogQuantityTextView;
+    private TextView burgerQuantityTextView;
+    private TextView carbonaraQuantityTextView;
+    private Button checkoutButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        pizzaQuantityTextView = findViewById(R.id.pizzaQuantityTextView);
+        hotDogQuantityTextView = findViewById(R.id.hotDogQuantityTextView);
+        burgerQuantityTextView = findViewById(R.id.burguerQuantityTextView);
+        carbonaraQuantityTextView = findViewById(R.id.carbonaraQuantityTextView);
+        checkoutButton = findViewById(R.id.checkoutButton);
+
+        updateCheckoutButton();
+
+        checkoutButton.setOnClickListener(v -> checkout());
     }
 
-    // Increase pizza quantity
+    private void updateCheckoutButton() {
+        double total = (pizzaQuantity * pizzaPrice) +
+                (hotDogQuantity * hotDogPrice) +
+                (burgerQuantity * burgerPrice) +
+                (carbonaraQuantity * carbonaraPrice);
+        checkoutButton.setText(String.format("Checkout: Total: €%.2f", total));
+    }
+
     public void increasePizzaQuantity(View view) {
-        TextView quantityTextView = findViewById(R.id.pizzaQuantityTextView);
-        int currentQuantity = Integer.parseInt(quantityTextView.getText().toString());
-        currentQuantity++;
-        quantityTextView.setText(String.valueOf(currentQuantity));
+        pizzaQuantity++;
+        pizzaQuantityTextView.setText(String.valueOf(pizzaQuantity));
+        updateCheckoutButton();
     }
 
-    // Decrease pizza quantity
     public void decreasePizzaQuantity(View view) {
-        TextView quantityTextView = findViewById(R.id.pizzaQuantityTextView);
-        int currentQuantity = Integer.parseInt(quantityTextView.getText().toString());
-        if (currentQuantity > 0) {
-            currentQuantity--;
-            quantityTextView.setText(String.valueOf(currentQuantity));
+        if (pizzaQuantity > 0) {
+            pizzaQuantity--;
+            pizzaQuantityTextView.setText(String.valueOf(pizzaQuantity));
+            updateCheckoutButton();
         }
     }
-    // Increase Hot Dog quantity
+
     public void increaseHotDogQuantity(View view) {
-        TextView quantityTextView = findViewById(R.id.hotDogQuantityTextView);
-        int currentQuantity = Integer.parseInt(quantityTextView.getText().toString());
-        currentQuantity++;
-        quantityTextView.setText(String.valueOf(currentQuantity));
+        hotDogQuantity++;
+        hotDogQuantityTextView.setText(String.valueOf(hotDogQuantity));
+        updateCheckoutButton();
     }
 
-    // Decrease Hot Dog quantity
     public void decreaseHotDogQuantity(View view) {
-        TextView quantityTextView = findViewById(R.id.hotDogQuantityTextView);
-        int currentQuantity = Integer.parseInt(quantityTextView.getText().toString());
-        if (currentQuantity > 0) {
-            currentQuantity--;
-            quantityTextView.setText(String.valueOf(currentQuantity));
+        if (hotDogQuantity > 0) {
+            hotDogQuantity--;
+            hotDogQuantityTextView.setText(String.valueOf(hotDogQuantity));
+            updateCheckoutButton();
         }
     }
-    // Increase Burguer quantity
+
     public void increaseBurguerQuantity(View view) {
-        TextView quantityTextView = findViewById(R.id.burguerQuantityTextView);
-        int currentQuantity = Integer.parseInt(quantityTextView.getText().toString());
-        currentQuantity++;
-        quantityTextView.setText(String.valueOf(currentQuantity));
+        burgerQuantity++;
+        burgerQuantityTextView.setText(String.valueOf(burgerQuantity));
+        updateCheckoutButton();
     }
 
-    // Decrease Burguer quantity
     public void decreaseBurguerQuantity(View view) {
-        TextView quantityTextView = findViewById(R.id.burguerQuantityTextView);
-        int currentQuantity = Integer.parseInt(quantityTextView.getText().toString());
-        if (currentQuantity > 0) {
-            currentQuantity--;
-            quantityTextView.setText(String.valueOf(currentQuantity));
+        if (burgerQuantity > 0) {
+            burgerQuantity--;
+            burgerQuantityTextView.setText(String.valueOf(burgerQuantity));
+            updateCheckoutButton();
         }
     }
-    // Increase Carbonara quantity
+
     public void increaseCarbonaraQuantity(View view) {
-        TextView quantityTextView = findViewById(R.id.carbonaraQuantityTextView);
-        int currentQuantity = Integer.parseInt(quantityTextView.getText().toString());
-        currentQuantity++;
-        quantityTextView.setText(String.valueOf(currentQuantity));
+        carbonaraQuantity++;
+        carbonaraQuantityTextView.setText(String.valueOf(carbonaraQuantity));
+        updateCheckoutButton();
     }
 
-    // Decrease Carbonara quantity
     public void decreaseCarbonaraQuantity(View view) {
-        TextView quantityTextView = findViewById(R.id.carbonaraQuantityTextView);
-        int currentQuantity = Integer.parseInt(quantityTextView.getText().toString());
-        if (currentQuantity > 0) {
-            currentQuantity--;
-            quantityTextView.setText(String.valueOf(currentQuantity));
+        if (carbonaraQuantity > 0) {
+            carbonaraQuantity--;
+            carbonaraQuantityTextView.setText(String.valueOf(carbonaraQuantity));
+            updateCheckoutButton();
         }
     }
-    public void checkout (View view){
 
+    public void checkout() {
+        Intent intent = getIntent();
+        String name = intent.getStringExtra("name");
+        String surname = intent.getStringExtra("surname");
+        String address = intent.getStringExtra("address");
+        String phone = intent.getStringExtra("phone");
+
+        StringBuilder items = new StringBuilder();
+        if (pizzaQuantity > 0) items.append("Pizza: ").append(pizzaQuantity).append(" x €").append(pizzaPrice).append("\n");
+        if (hotDogQuantity > 0) items.append("Hot Dog: ").append(hotDogQuantity).append(" x €").append(hotDogPrice).append("\n");
+        if (burgerQuantity > 0) items.append("Burger: ").append(burgerQuantity).append(" x €").append(burgerPrice).append("\n");
+        if (carbonaraQuantity > 0) items.append("Carbonara: ").append(carbonaraQuantity).append(" x €").append(carbonaraPrice).append("\n");
+
+        double totalPrice = (pizzaQuantity * pizzaPrice) +
+                (hotDogQuantity * hotDogPrice) +
+                (burgerQuantity * burgerPrice) +
+                (carbonaraQuantity * carbonaraPrice);
+
+        Intent checkoutIntent = new Intent(MainActivity.this, CheckoutActivity.class);
+        checkoutIntent.putExtra("name", name + " " + surname);
+        checkoutIntent.putExtra("address", address);
+        checkoutIntent.putExtra("phone", phone);
+        checkoutIntent.putExtra("items", items.toString());
+        checkoutIntent.putExtra("totalPrice", totalPrice);
+        startActivity(checkoutIntent);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
