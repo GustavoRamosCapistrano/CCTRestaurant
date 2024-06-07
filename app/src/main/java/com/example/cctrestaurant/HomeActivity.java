@@ -20,6 +20,11 @@ public class HomeActivity extends AppCompatActivity {
     private Switch termsSwitch;
     private RadioGroup paymentRadioGroup;
 
+    private int pizzaQuantity;
+    private int hotDogQuantity;
+    private int burgerQuantity;
+    private int carbonaraQuantity;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +38,15 @@ public class HomeActivity extends AppCompatActivity {
         termsSwitch = findViewById(R.id.termsSwitch);
         paymentRadioGroup = findViewById(R.id.paymentRadioGroup);
 
+        Intent intent = getIntent();
+        pizzaQuantity = intent.getIntExtra("pizzaQuantity", 0);
+        hotDogQuantity = intent.getIntExtra("hotDogQuantity", 0);
+        burgerQuantity = intent.getIntExtra("burgerQuantity", 0);
+        carbonaraQuantity = intent.getIntExtra("carbonaraQuantity", 0);
+
         checkoutButton.setOnClickListener(v -> {
             if (isFormValid()) {
-                Intent intent = new Intent(HomeActivity.this, MainActivity.class);
-                intent.putExtra("name", nameEditText.getText().toString());
-                intent.putExtra("surname", surnameEditText.getText().toString());
-                intent.putExtra("address", addressEditText.getText().toString());
-                intent.putExtra("phone", phoneEditText.getText().toString());
-                startActivity(intent);
+                proceedToCheckout();
             } else {
                 Toast.makeText(HomeActivity.this, "Please fill all fields and agree to the terms and conditions", Toast.LENGTH_SHORT).show();
             }
@@ -54,5 +60,19 @@ public class HomeActivity extends AppCompatActivity {
                 !phoneEditText.getText().toString().isEmpty() &&
                 termsSwitch.isChecked() &&
                 paymentRadioGroup.getCheckedRadioButtonId() != -1;
+    }
+
+    private void proceedToCheckout() {
+        String fullName = nameEditText.getText().toString() + " " + surnameEditText.getText().toString();
+
+        Intent checkoutIntent = new Intent(HomeActivity.this, CheckoutActivity.class);
+        checkoutIntent.putExtra("fullName", fullName);
+        checkoutIntent.putExtra("address", addressEditText.getText().toString());
+        checkoutIntent.putExtra("phone", phoneEditText.getText().toString());
+        checkoutIntent.putExtra("pizzaQuantity", pizzaQuantity);
+        checkoutIntent.putExtra("hotDogQuantity", hotDogQuantity);
+        checkoutIntent.putExtra("burgerQuantity", burgerQuantity);
+        checkoutIntent.putExtra("carbonaraQuantity", carbonaraQuantity);
+        startActivity(checkoutIntent);
     }
 }
