@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Root layout is a ConstraintLayout -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
@@ -8,6 +10,7 @@
     android:padding="16dp"
     tools:context=".FeedbackActivity">
 
+    <!-- TextView for prompting the user to rate the app -->
     <TextView
         android:id="@+id/rateAppText"
         android:layout_width="wrap_content"
@@ -20,6 +23,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="16dp" />
 
+    <!-- RatingBar for the user to rate the app -->
     <RatingBar
         android:id="@+id/ratingBar"
         android:layout_width="wrap_content"
@@ -31,6 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- TextInputLayout for capturing the user's feedback -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayoutFeedback"
         android:layout_width="match_parent"
@@ -43,6 +48,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
+        <!-- TextInputEditText for entering the feedback -->
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/feedbackEditText"
             android:layout_width="match_parent"
@@ -54,6 +60,7 @@
             android:textColorHint="#F44336" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Button for sending the feedback -->
     <Button
         android:id="@+id/sendFeedbackButton"
         android:layout_width="0dp"
@@ -67,6 +74,7 @@
         app:layout_constraintWidth_percent="0.45"
         app:cornerRadius="50dp"/>
 
+    <!-- Button for skipping the feedback evaluation -->
     <Button
         android:id="@+id/skipFeedbackButton"
         android:layout_width="0dp"

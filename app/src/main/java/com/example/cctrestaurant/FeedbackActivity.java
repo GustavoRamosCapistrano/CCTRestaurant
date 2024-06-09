@@ -11,6 +11,7 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class FeedbackActivity extends AppCompatActivity {
 
+    // Declare UI elements
     private RatingBar ratingBar;
     private TextInputEditText feedbackEditText;
     private Button sendFeedbackButton, skipFeedbackButton;
@@ -20,11 +21,13 @@ public class FeedbackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
+        // Initialize UI elements
         ratingBar = findViewById(R.id.ratingBar);
         feedbackEditText = findViewById(R.id.feedbackEditText);
         sendFeedbackButton = findViewById(R.id.sendFeedbackButton);
         skipFeedbackButton = findViewById(R.id.skipFeedbackButton);
 
+        // Set onClickListener for sendFeedbackButton
         sendFeedbackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,6 +35,7 @@ public class FeedbackActivity extends AppCompatActivity {
             }
         });
 
+        // Set onClickListener for skipFeedbackButton
         skipFeedbackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,22 +44,26 @@ public class FeedbackActivity extends AppCompatActivity {
         });
     }
 
+    // Method to handle sending feedback
     private void sendFeedback() {
-        // Handle sending feedback
+        // Get rating and feedback text
         float rating = ratingBar.getRating();
         String feedback = feedbackEditText.getText().toString();
 
         // Process the feedback here (e.g., send to a server or save locally)
+        // For now, just show a toast message
 
-        // Show toast message
+        // Show thank you toast message
         Toast.makeText(this, "Thank you for your feedback!", Toast.LENGTH_SHORT).show();
 
+        // Navigate back to MainActivity
         goToMainActivity();
     }
 
+    // Method to navigate back to MainActivity
     private void goToMainActivity() {
         Intent intent = new Intent(FeedbackActivity.this, MainActivity.class);
         startActivity(intent);
-        finish();
+        finish(); // Close FeedbackActivity
     }
 }

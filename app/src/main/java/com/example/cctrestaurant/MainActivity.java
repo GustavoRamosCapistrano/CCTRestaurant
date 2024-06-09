@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Declare UI elements
     private TextView pizzaQuantityTextView;
     private TextView hotDogQuantityTextView;
     private TextView burgerQuantityTextView;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView saladQuantityTextView;
     private Button checkoutButton;
 
+    // Variables to hold item quantities
     private int pizzaQuantity = 0;
     private int hotDogQuantity = 0;
     private int burgerQuantity = 0;
@@ -29,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        // Initialize UI elements
         pizzaQuantityTextView = findViewById(R.id.pizzaQuantityTextView);
         hotDogQuantityTextView = findViewById(R.id.hotDogQuantityTextView);
         burgerQuantityTextView = findViewById(R.id.burgerQuantityTextView);
@@ -37,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         saladQuantityTextView = findViewById(R.id.saladQuantityTextView);
         checkoutButton = findViewById(R.id.checkoutButton);
 
+        // Set up onClickListeners for increase and decrease buttons
         findViewById(R.id.increasePizzaQuantity).setOnClickListener(v -> {
             pizzaQuantity++;
             updateQuantities();
@@ -87,14 +90,17 @@ public class MainActivity extends AppCompatActivity {
             updateQuantities();
         });
 
+        // Set onClickListener for checkoutButton
         checkoutButton.setOnClickListener(v -> {
+            // Create an intent to start the HomeActivity
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+            // Pass item quantities to HomeActivity
             intent.putExtra("pizzaQuantity", pizzaQuantity);
             intent.putExtra("hotDogQuantity", hotDogQuantity);
             intent.putExtra("burgerQuantity", burgerQuantity);
             intent.putExtra("carbonaraQuantity", carbonaraQuantity);
             intent.putExtra("saladQuantity", saladQuantity);
-            startActivity(intent);
+            startActivity(intent); // Start the HomeActivity
         });
 
         // Restore the state if it was saved before
@@ -108,26 +114,33 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    // Method to update UI with the current quantities and calculate the total price
     @SuppressLint("DefaultLocale")
     private void updateQuantities() {
+        // Update TextViews with current quantities
         pizzaQuantityTextView.setText(String.valueOf(pizzaQuantity));
         hotDogQuantityTextView.setText(String.valueOf(hotDogQuantity));
         burgerQuantityTextView.setText(String.valueOf(burgerQuantity));
         carbonaraQuantityTextView.setText(String.valueOf(carbonaraQuantity));
         saladQuantityTextView.setText(String.valueOf(saladQuantity));
 
+        // Prices for items
         double saladPrice = 9.99;
         double carbonaraPrice = 19.99;
         double burgerPrice = 12.99;
         double hotDogPrice = 10.99;
         double pizzaPrice = 14.99;
+
+        // Calculate total price
         double totalPrice = (pizzaQuantity * pizzaPrice) + (hotDogQuantity * hotDogPrice) +
                 (burgerQuantity * burgerPrice) + (carbonaraQuantity * carbonaraPrice) +
                 (saladQuantity * saladPrice);
 
+        // Update checkout button text with the total price
         checkoutButton.setText(String.format("Total: €%.2f", totalPrice));
     }
 
+    // Save the current state of the activity (e.g., item quantities)
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);

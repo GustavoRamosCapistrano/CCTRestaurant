@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Root layout is a ConstraintLayout -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bac"
@@ -8,6 +10,7 @@
     android:padding="16dp"
     tools:context=".HomeActivity">
 
+    <!-- EditText for entering the user's phone number -->
     <EditText
         android:id="@+id/phoneEditText"
         android:layout_width="match_parent"
@@ -26,6 +29,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addressEditText" />
 
+    <!-- RadioGroup for selecting payment method -->
     <RadioGroup
         android:id="@+id/paymentRadioGroup"
         android:layout_width="match_parent"
@@ -36,6 +40,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneEditText">
 
+        <!-- RadioButton for selecting payment by card -->
         <RadioButton
             android:id="@+id/cardRadioButton"
             android:layout_width="wrap_content"
@@ -47,6 +52,7 @@
             android:textColorLink="#373737"
             android:textStyle="bold" />
 
+        <!-- RadioButton for selecting payment by cash -->
         <RadioButton
             android:id="@+id/cashRadioButton"
             android:layout_width="126dp"
@@ -59,6 +65,7 @@
             android:textStyle="bold" />
     </RadioGroup>
 
+    <!-- Switch for agreeing to terms and conditions -->
     <Switch
         android:id="@+id/termsSwitch"
         android:layout_width="match_parent"
@@ -78,6 +85,7 @@
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
 
+    <!-- Button for proceeding to checkout -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/checkoutButton"
         android:layout_width="match_parent"
@@ -93,6 +101,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <!-- EditText for entering the user's name -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/nameEditText"
         android:layout_width="match_parent"
@@ -107,6 +116,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 
+    <!-- EditText for entering the user's surname -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/surnameEditText"
         android:layout_width="match_parent"
@@ -121,6 +131,7 @@
         app:layout_constraintTop_toBottomOf="@+id/nameEditText"
         tools:layout_editor_absoluteX="17dp" />
 
+    <!-- EditText for entering the user's address -->
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/addressEditText"
         android:layout_width="match_parent"

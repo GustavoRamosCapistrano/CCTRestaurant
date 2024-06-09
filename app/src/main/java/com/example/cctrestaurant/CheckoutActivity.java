@@ -30,6 +30,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private TextView itemsTextView;
     private TextView totalPriceTextView;
 
+    // Prices of the items
     private final double pizzaPrice = 14.99;
     private final double hotDogPrice = 10.99;
     private final double burgerPrice = 12.99;
@@ -43,6 +44,7 @@ public class CheckoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
+        // Initialize views
         TextView nameTextView = findViewById(R.id.nameTextView);
         EditText surnameEditText = findViewById(R.id.surnameEditText);
         TextView addressTextView = findViewById(R.id.addressTextView);
@@ -52,6 +54,7 @@ public class CheckoutActivity extends AppCompatActivity {
         Button editOrderButton = findViewById(R.id.editOrderButton);
         Button confirmButton = findViewById(R.id.confirmButton);
 
+        // Get data from intent
         Intent intent = getIntent();
         String fullName = intent.getStringExtra("fullName");
         String address = intent.getStringExtra("address");
@@ -62,10 +65,12 @@ public class CheckoutActivity extends AppCompatActivity {
         int carbonaraQuantity = intent.getIntExtra("carbonaraQuantity", 0);
         int saladQuantity = intent.getIntExtra("saladQuantity", 0);
 
+        // Set customer details
         nameTextView.setText(fullName);
         addressTextView.setText(address);
         phoneTextView.setText(phone);
 
+        // Build the items summary string
         StringBuilder itemsBuilder = new StringBuilder();
         if (pizzaQuantity > 0) {
             itemsBuilder.append("Pizza: ").append(pizzaQuantity).append(" X ").append(pizzaPrice).append("\n");
@@ -85,11 +90,13 @@ public class CheckoutActivity extends AppCompatActivity {
         String items = itemsBuilder.toString();
         itemsTextView.setText(items);
 
+        // Calculate the total price
         double totalPrice = (pizzaQuantity * pizzaPrice) + (hotDogQuantity * hotDogPrice) +
                 (burgerQuantity * burgerPrice) + (carbonaraQuantity * carbonaraPrice) +
                 (saladQuantity * saladPrice);
         totalPriceTextView.setText(String.format("€%.2f", totalPrice));
 
+        // Set onClickListener for editOrderButton
         editOrderButton.setOnClickListener(v -> {
             Intent editIntent = new Intent(CheckoutActivity.this, MainActivity.class);
             editIntent.putExtra("pizzaQuantity", pizzaQuantity);
@@ -100,19 +107,19 @@ public class CheckoutActivity extends AppCompatActivity {
             startActivityForResult(editIntent, EDIT_ORDER_REQUEST_CODE);
         });
 
+        // Set onClickListener for confirmButton
         confirmButton.setOnClickListener(v -> {
+            // Check for notification permission
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
                 showNotification();
                 navigateToFeedbackActivity();
             } else {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.POST_NOTIFICATIONS)) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_NOTIFICATION_PERMISSION);
-                } else {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_NOTIFICATION_PERMISSION);
-                }
+                // Request notification permission
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_NOTIFICATION_PERMISSION);
             }
         });
 
+        // Create notification channel
         createNotificationChannel();
     }
 
@@ -121,12 +128,14 @@ public class CheckoutActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == EDIT_ORDER_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            // Get updated quantities from MainActivity
             int pizzaQuantity = data.getIntExtra("pizzaQuantity", 0);
             int hotDogQuantity = data.getIntExtra("hotDogQuantity", 0);
             int burgerQuantity = data.getIntExtra("burgerQuantity", 0);
             int carbonaraQuantity = data.getIntExtra("carbonaraQuantity", 0);
             int saladQuantity = data.getIntExtra("saladQuantity", 0);
 
+            // Update the items summary string
             StringBuilder itemsBuilder = new StringBuilder();
             if (pizzaQuantity > 0) {
                 itemsBuilder.append("Pizza: ").append(pizzaQuantity).append(" X ").append(pizzaPrice).append("\n");
@@ -146,6 +155,7 @@ public class CheckoutActivity extends AppCompatActivity {
             String items = itemsBuilder.toString();
             itemsTextView.setText(items);
 
+            // Update the total price
             double totalPrice = (pizzaQuantity * pizzaPrice) + (hotDogQuantity * hotDogPrice) +
                     (burgerQuantity * burgerPrice) + (carbonaraQuantity * carbonaraPrice) +
                     (saladQuantity * saladPrice);
@@ -153,6 +163,7 @@ public class CheckoutActivity extends AppCompatActivity {
         }
     }
 
+    // Show notification to confirm order placement
     private void showNotification() {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setSmallIcon(R.drawable.ic_order)
@@ -167,9 +178,11 @@ public class CheckoutActivity extends AppCompatActivity {
 
         notificationManager.notify(1, builder.build());
 
+        // Show custom toast
         showCustomToast();
     }
 
+    // Show custom toast with an image
     private void showCustomToast() {
         ImageView imageView = new ImageView(this);
         imageView.setImageResource(R.drawable.ic_order);
@@ -179,14 +192,17 @@ public class CheckoutActivity extends AppCompatActivity {
         toast.setView(imageView);
         toast.show();
 
+        // Navigate to feedback activity
         navigateToFeedbackActivity();
     }
 
+    // Navigate to feedback activity
     private void navigateToFeedbackActivity() {
         Intent intent = new Intent(CheckoutActivity.this, FeedbackActivity.class);
         startActivity(intent);
     }
 
+    // Create notification channel
     private void createNotificationChannel() {
         CharSequence name = "Order Channel";
         String description = "Channel for order notifications";
@@ -198,6 +214,7 @@ public class CheckoutActivity extends AppCompatActivity {
         notificationManager.createNotificationChannel(channel);
     }
 
+    // Handle notification permission result
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
