@@ -1,5 +1,6 @@
 package com.example.cctrestaurant;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -16,7 +17,7 @@ public class HomeActivity extends AppCompatActivity {
     private EditText surnameEditText;
     private EditText addressEditText;
     private EditText phoneEditText;
-    private Button checkoutButton;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch termsSwitch;
     private RadioGroup paymentRadioGroup;
 
@@ -24,6 +25,7 @@ public class HomeActivity extends AppCompatActivity {
     private int hotDogQuantity;
     private int burgerQuantity;
     private int carbonaraQuantity;
+    private int saladQuantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
         surnameEditText = findViewById(R.id.surnameEditText);
         addressEditText = findViewById(R.id.addressEditText);
         phoneEditText = findViewById(R.id.phoneEditText);
-        checkoutButton = findViewById(R.id.checkoutButton);
+        Button checkoutButton = findViewById(R.id.checkoutButton);
         termsSwitch = findViewById(R.id.termsSwitch);
         paymentRadioGroup = findViewById(R.id.paymentRadioGroup);
 
@@ -43,6 +45,7 @@ public class HomeActivity extends AppCompatActivity {
         hotDogQuantity = intent.getIntExtra("hotDogQuantity", 0);
         burgerQuantity = intent.getIntExtra("burgerQuantity", 0);
         carbonaraQuantity = intent.getIntExtra("carbonaraQuantity", 0);
+        saladQuantity = intent.getIntExtra("saladQuantity", 0);
 
         checkoutButton.setOnClickListener(v -> {
             if (isFormValid()) {
@@ -73,6 +76,7 @@ public class HomeActivity extends AppCompatActivity {
         checkoutIntent.putExtra("hotDogQuantity", hotDogQuantity);
         checkoutIntent.putExtra("burgerQuantity", burgerQuantity);
         checkoutIntent.putExtra("carbonaraQuantity", carbonaraQuantity);
+        checkoutIntent.putExtra("saladQuantity", saladQuantity);
         startActivity(checkoutIntent);
     }
 }

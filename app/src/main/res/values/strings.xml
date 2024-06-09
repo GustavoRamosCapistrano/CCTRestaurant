@@ -1,3 +1,4 @@
 <resources>
+    <!-- Define the app name as a string resource -->
     <string name="app_name">CCT Restaurant</string>
 </resources>

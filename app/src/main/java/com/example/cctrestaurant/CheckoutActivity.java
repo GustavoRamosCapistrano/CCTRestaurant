@@ -27,35 +27,30 @@ public class CheckoutActivity extends AppCompatActivity {
     private static final int EDIT_ORDER_REQUEST_CODE = 2;
     private static final String CHANNEL_ID = "order_channel";
 
-    private TextView nameTextView;
-    private EditText surnameEditText;
-    private TextView addressTextView;
-    private TextView phoneTextView;
     private TextView itemsTextView;
     private TextView totalPriceTextView;
-    private Button editOrderButton;
-    private Button confirmButton;
 
-    private double pizzaPrice = 14.99;
-    private double hotDogPrice = 10.99;
-    private double burgerPrice = 12.99;
-    private double carbonaraPrice = 19.99;
+    private final double pizzaPrice = 14.99;
+    private final double hotDogPrice = 10.99;
+    private final double burgerPrice = 12.99;
+    private final double carbonaraPrice = 19.99;
+    private final double saladPrice = 9.99;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint({"MissingInflatedId", "DefaultLocale"})
     @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
 
-        nameTextView = findViewById(R.id.nameTextView);
-        surnameEditText = findViewById(R.id.surnameEditText);
-        addressTextView = findViewById(R.id.addressTextView);
-        phoneTextView = findViewById(R.id.phoneTextView);
+        TextView nameTextView = findViewById(R.id.nameTextView);
+        EditText surnameEditText = findViewById(R.id.surnameEditText);
+        TextView addressTextView = findViewById(R.id.addressTextView);
+        TextView phoneTextView = findViewById(R.id.phoneTextView);
         itemsTextView = findViewById(R.id.itemsTextView);
         totalPriceTextView = findViewById(R.id.totalPriceTextView);
-        editOrderButton = findViewById(R.id.editOrderButton);
-        confirmButton = findViewById(R.id.confirmButton);
+        Button editOrderButton = findViewById(R.id.editOrderButton);
+        Button confirmButton = findViewById(R.id.confirmButton);
 
         Intent intent = getIntent();
         String fullName = intent.getStringExtra("fullName");
@@ -65,6 +60,7 @@ public class CheckoutActivity extends AppCompatActivity {
         int hotDogQuantity = intent.getIntExtra("hotDogQuantity", 0);
         int burgerQuantity = intent.getIntExtra("burgerQuantity", 0);
         int carbonaraQuantity = intent.getIntExtra("carbonaraQuantity", 0);
+        int saladQuantity = intent.getIntExtra("saladQuantity", 0);
 
         nameTextView.setText(fullName);
         addressTextView.setText(address);
@@ -83,11 +79,15 @@ public class CheckoutActivity extends AppCompatActivity {
         if (carbonaraQuantity > 0) {
             itemsBuilder.append("Carbonara: ").append(carbonaraQuantity).append(" X ").append(carbonaraPrice).append("\n");
         }
+        if (saladQuantity > 0) {
+            itemsBuilder.append("Salad: ").append(saladQuantity).append(" X ").append(saladPrice).append("\n");
+        }
         String items = itemsBuilder.toString();
         itemsTextView.setText(items);
 
         double totalPrice = (pizzaQuantity * pizzaPrice) + (hotDogQuantity * hotDogPrice) +
-                (burgerQuantity * burgerPrice) + (carbonaraQuantity * carbonaraPrice);
+                (burgerQuantity * burgerPrice) + (carbonaraQuantity * carbonaraPrice) +
+                (saladQuantity * saladPrice);
         totalPriceTextView.setText(String.format("€%.2f", totalPrice));
 
         editOrderButton.setOnClickListener(v -> {
@@ -96,13 +96,14 @@ public class CheckoutActivity extends AppCompatActivity {
             editIntent.putExtra("hotDogQuantity", hotDogQuantity);
             editIntent.putExtra("burgerQuantity", burgerQuantity);
             editIntent.putExtra("carbonaraQuantity", carbonaraQuantity);
+            editIntent.putExtra("saladQuantity", saladQuantity);
             startActivityForResult(editIntent, EDIT_ORDER_REQUEST_CODE);
         });
 
         confirmButton.setOnClickListener(v -> {
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
                 showNotification();
-                navigateToMainActivity();
+                navigateToFeedbackActivity();
             } else {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.POST_NOTIFICATIONS)) {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, REQUEST_NOTIFICATION_PERMISSION);
@@ -115,6 +116,7 @@ public class CheckoutActivity extends AppCompatActivity {
         createNotificationChannel();
     }
 
+    @SuppressLint("DefaultLocale")
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -123,6 +125,7 @@ public class CheckoutActivity extends AppCompatActivity {
             int hotDogQuantity = data.getIntExtra("hotDogQuantity", 0);
             int burgerQuantity = data.getIntExtra("burgerQuantity", 0);
             int carbonaraQuantity = data.getIntExtra("carbonaraQuantity", 0);
+            int saladQuantity = data.getIntExtra("saladQuantity", 0);
 
             StringBuilder itemsBuilder = new StringBuilder();
             if (pizzaQuantity > 0) {
@@ -137,11 +140,15 @@ public class CheckoutActivity extends AppCompatActivity {
             if (carbonaraQuantity > 0) {
                 itemsBuilder.append("Carbonara: ").append(carbonaraQuantity).append(" X ").append(carbonaraPrice).append("\n");
             }
+            if (saladQuantity > 0) {
+                itemsBuilder.append("Salad: ").append(saladQuantity).append(" X ").append(saladPrice).append("\n");
+            }
             String items = itemsBuilder.toString();
             itemsTextView.setText(items);
 
             double totalPrice = (pizzaQuantity * pizzaPrice) + (hotDogQuantity * hotDogPrice) +
-                    (burgerQuantity * burgerPrice) + (carbonaraQuantity * carbonaraPrice);
+                    (burgerQuantity * burgerPrice) + (carbonaraQuantity * carbonaraPrice) +
+                    (saladQuantity * saladPrice);
             totalPriceTextView.setText(String.format("€%.2f", totalPrice));
         }
     }
@@ -172,25 +179,23 @@ public class CheckoutActivity extends AppCompatActivity {
         toast.setView(imageView);
         toast.show();
 
-        navigateToMainActivity();
+        navigateToFeedbackActivity();
     }
 
-    private void navigateToMainActivity() {
-        Intent intent = new Intent(CheckoutActivity.this, MainActivity.class);
+    private void navigateToFeedbackActivity() {
+        Intent intent = new Intent(CheckoutActivity.this, FeedbackActivity.class);
         startActivity(intent);
     }
 
     private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            CharSequence name = "Order Channel";
-            String description = "Channel for order notifications";
-            int importance = NotificationManager.IMPORTANCE_DEFAULT;
-            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
-            channel.setDescription(description);
+        CharSequence name = "Order Channel";
+        String description = "Channel for order notifications";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+        channel.setDescription(description);
 
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-        }
+        NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        notificationManager.createNotificationChannel(channel);
     }
 
     @Override
@@ -199,7 +204,7 @@ public class CheckoutActivity extends AppCompatActivity {
         if (requestCode == REQUEST_NOTIFICATION_PERMISSION) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 showNotification();
-                navigateToMainActivity();
+                navigateToFeedbackActivity();
             } else {
                 Toast.makeText(this, "Permission denied to post notifications", Toast.LENGTH_SHORT).show();
             }

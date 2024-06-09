@@ -75,7 +75,8 @@
         android:trackTint="#F44336"
         app:layout_constraintBottom_toTopOf="@+id/checkoutButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/checkoutButton"

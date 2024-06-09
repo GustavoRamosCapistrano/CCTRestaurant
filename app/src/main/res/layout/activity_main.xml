@@ -1,9 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D5F44336"
-    android:backgroundTint="#D5F44336">
+    tools:ignore="ExtraText">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -13,7 +13,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#00F44336"
+            android:background="#FFFFFF"
             android:orientation="vertical"
             android:padding="15dp">
 
@@ -31,7 +31,7 @@
                 android:fontFamily="@font/roboto_condensed_bold"
                 android:shadowColor="#6200EE"
                 android:text="Choose Your Food"
-                android:textColor="#FFFFFF"
+                android:textColor="#F44336"
                 android:textSize="48sp"
                 android:textStyle="bold" />
 
@@ -122,7 +122,7 @@
                 <ImageView
                     android:id="@+id/pizzaImage"
                     android:layout_width="107dp"
-                    android:layout_height="156dp"
+                    android:layout_height="match_parent"
                     android:layout_gravity="center|fill_horizontal"
                     android:background="#F44336"
                     app:srcCompat="@drawable/pizza" />
@@ -361,6 +361,8 @@
                         android:text="€19.99"
                         android:textSize="18sp" />
 
+
+
                     <!-- Quantity buttons and TextView -->
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -401,6 +403,7 @@
 
                 </LinearLayout>
 
+
                 <!-- Product Image -->
                 <ImageView
                     android:id="@+id/carbonaraImage"
@@ -409,6 +412,111 @@
                     android:layout_gravity="center"
                     android:background="#F44336"
                     android:src="@drawable/carbonara" />
+            </LinearLayout>
+            <TextView
+                android:id="@+id/headerTextView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:backgroundTint="#6200EE"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:shadowColor="#6200EE"
+                android:text="Special Offer"
+                android:textColor="#F44336"
+                android:textSize="48sp"
+                android:textStyle="bold" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <!-- Product info -->
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/salad"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto"
+                        android:text="Salad"
+                        android:textColor="#F44336"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/saladDescription"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="Ingredients: Lettuce, Tomatoes, Cucumbers, Olives, Feta Cheese, Olive Oil"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/saladPrice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:text="€9.99"
+                        android:textSize="18sp" />
+
+                    <!-- Quantity buttons and TextView -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/decreaseSaladQuantity"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:backgroundTint="#F44336"
+                            android:onClick="decreaseSaladQuantity"
+                            android:text="-"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            app:cornerRadius="22.5dp" />
+
+                        <TextView
+                            android:id="@+id/saladQuantityTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:text="0"
+                            android:textSize="18sp" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/increaseSaladQuantity"
+                            android:layout_width="45dp"
+                            android:layout_height="45dp"
+                            android:backgroundTint="#F44336"
+                            android:onClick="increaseSaladQuantity"
+                            android:text="+"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            app:cornerRadius="22.5dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- Product Image -->
+                <ImageView
+                    android:id="@+id/saladImage"
+                    android:layout_width="107dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="#F44336"
+                    android:src="@drawable/salad" />
             </LinearLayout>
 
         </LinearLayout>
