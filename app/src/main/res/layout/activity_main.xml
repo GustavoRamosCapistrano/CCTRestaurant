@@ -1,6 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#D5F44336"
+    android:backgroundTint="#D5F44336">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -10,22 +13,28 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
+            android:background="#00F44336"
             android:orientation="vertical"
             android:padding="15dp">
 
             <!-- This is the Restaurant name -->
+
+            <!-- Product 1 - Pizza -->
+
             <TextView
                 android:id="@+id/headerTextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginBottom="15dp"
+                android:backgroundTint="#6200EE"
+                android:fontFamily="@font/roboto_condensed_bold"
+                android:shadowColor="#6200EE"
                 android:text="Choose Your Food"
-                android:textSize="24sp"
+                android:textColor="#FFFFFF"
+                android:textSize="48sp"
                 android:textStyle="bold" />
 
-            <!-- Product 1 - Pizza -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,8 +56,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto"
                         android:text="Pizza"
-                        android:textSize="20sp" />
+                        android:textColor="#F44336"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/pizzaDescription"
@@ -72,12 +84,16 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/decreasePizzaQuantity"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
+                            android:backgroundTint="#F44336"
                             android:onClick="decreasePizzaQuantity"
-                            android:text="-" />
+                            android:text="-"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            app:cornerRadius="22.5dp" />
 
                         <TextView
                             android:id="@+id/pizzaQuantityTextView"
@@ -88,13 +104,16 @@
                             android:text="0"
                             android:textSize="18sp" />
 
-
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/increasePizzaQuantity"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
+                            android:backgroundTint="#F44336"
                             android:onClick="increasePizzaQuantity"
-                            android:text="+" />
+                            android:text="+"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            app:cornerRadius="22.5dp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -104,8 +123,9 @@
                     android:id="@+id/pizzaImage"
                     android:layout_width="107dp"
                     android:layout_height="156dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/pizza" />
+                    android:layout_gravity="center|fill_horizontal"
+                    android:background="#F44336"
+                    app:srcCompat="@drawable/pizza" />
             </LinearLayout>
 
             <!-- Product 2 - Hot Dog -->
@@ -130,8 +150,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto"
                         android:text="Hot Dog"
-                        android:textSize="20sp" />
+                        android:textColor="#F44336"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/hotDogDescription"
@@ -155,12 +178,16 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/decreaseHotDogQuantity"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
+                            android:backgroundTint="#F44336"
                             android:onClick="decreaseHotDogQuantity"
-                            android:text="-" />
+                            android:text="-"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            app:cornerRadius="22.5dp" />
 
                         <TextView
                             android:id="@+id/hotDogQuantityTextView"
@@ -171,13 +198,16 @@
                             android:text="0"
                             android:textSize="18sp" />
 
-
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/increaseHotDogQuantity"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
+                            android:backgroundTint="#F44336"
                             android:onClick="increaseHotDogQuantity"
-                            android:text="+" />
+                            android:text="+"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            app:cornerRadius="22.5dp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -188,6 +218,7 @@
                     android:layout_width="107dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:background="#F44336"
                     android:src="@drawable/hotdog" />
             </LinearLayout>
 
@@ -211,15 +242,18 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/Burguer"
+                        android:id="@+id/Burger"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto"
                         android:text="Burger"
-                        android:textSize="20sp" />
+                        android:textColor="#F44336"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/burguerDescription"
+                        android:id="@+id/burgerDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
@@ -227,7 +261,7 @@
                         android:textSize="15sp" />
 
                     <TextView
-                        android:id="@+id/burguerPrice"
+                        android:id="@+id/burgerPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
@@ -239,16 +273,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
-                        <Button
-                            android:id="@+id/decreaseBurguerQuantity"
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/decreaseBurgerQuantity"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:onClick="decreaseBurguerQuantity"
-                            android:text="-" />
-
+                            android:backgroundTint="#F44336"
+                            android:onClick="decreaseBurgerQuantity"
+                            android:text="-"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            app:cornerRadius="22.5dp" />
 
                         <TextView
-                            android:id="@+id/burguerQuantityTextView"
+                            android:id="@+id/burgerQuantityTextView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="10dp"
@@ -256,23 +294,27 @@
                             android:text="0"
                             android:textSize="18sp" />
 
-                        <Button
-                            android:id="@+id/increaseBurguerQuantity"
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/increaseBurgerQuantity"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
-                            android:onClick="increaseBurguerQuantity"
-                            android:text="+" />
-
+                            android:backgroundTint="#F44336"
+                            android:onClick="increaseBurgerQuantity"
+                            android:text="+"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            app:cornerRadius="22.5dp" />
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/burguerImage"
+                    android:id="@+id/burgerImage"
                     android:layout_width="107dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:src="@drawable/burguer" />
+                    android:background="#F44336"
+                    android:src="@drawable/burger" />
             </LinearLayout>
 
             <!-- Product 4 - Carbonara -->
@@ -297,8 +339,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
+                        android:fontFamily="@font/roboto"
                         android:text="Carbonara"
-                        android:textSize="20sp" />
+                        android:textColor="#F44336"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/carbonaraDescription"
@@ -322,12 +367,16 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/decreaseCarbonaraQuantity"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
+                            android:backgroundTint="#F44336"
                             android:onClick="decreaseCarbonaraQuantity"
-                            android:text="-" />
+                            android:text="-"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            app:cornerRadius="22.5dp" />
 
                         <TextView
                             android:id="@+id/carbonaraQuantityTextView"
@@ -338,13 +387,16 @@
                             android:text="0"
                             android:textSize="18sp" />
 
-
-                        <Button
+                        <com.google.android.material.button.MaterialButton
                             android:id="@+id/increaseCarbonaraQuantity"
                             android:layout_width="45dp"
                             android:layout_height="45dp"
+                            android:backgroundTint="#F44336"
                             android:onClick="increaseCarbonaraQuantity"
-                            android:text="+" />
+                            android:text="+"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold"
+                            app:cornerRadius="22.5dp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -355,6 +407,7 @@
                     android:layout_width="107dp"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
+                    android:background="#F44336"
                     android:src="@drawable/carbonara" />
             </LinearLayout>
 
@@ -362,12 +415,15 @@
 
     </ScrollView>
 
-    <!-- Checkout button -->
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/checkoutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Checkout: Total: €0.00"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="1dp"
+        android:backgroundTint="#F44336"
         android:onClick="checkout"
-        android:layout_alignParentBottom="true"/>
+        android:text="Total: €0.00"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="50dp" />
 </RelativeLayout>

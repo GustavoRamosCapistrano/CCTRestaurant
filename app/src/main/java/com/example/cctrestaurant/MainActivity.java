@@ -10,18 +10,18 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView pizzaQuantityTextView;
     private TextView hotDogQuantityTextView;
-    private TextView burguerQuantityTextView;
+    private TextView burgerQuantityTextView;
     private TextView carbonaraQuantityTextView;
     private Button checkoutButton;
 
     private int pizzaQuantity = 0;
     private int hotDogQuantity = 0;
-    private int burguerQuantity = 0;
+    private int burgerQuantity = 0;
     private int carbonaraQuantity = 0;
 
     private double pizzaPrice = 14.99;
     private double hotDogPrice = 10.99;
-    private double burguerPrice = 12.99;
+    private double burgerPrice = 12.99;
     private double carbonaraPrice = 19.99;
 
     @Override
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
         pizzaQuantityTextView = findViewById(R.id.pizzaQuantityTextView);
         hotDogQuantityTextView = findViewById(R.id.hotDogQuantityTextView);
-        burguerQuantityTextView = findViewById(R.id.burguerQuantityTextView);
+        burgerQuantityTextView = findViewById(R.id.burgerQuantityTextView);
         carbonaraQuantityTextView = findViewById(R.id.carbonaraQuantityTextView);
         checkoutButton = findViewById(R.id.checkoutButton);
 
@@ -55,13 +55,13 @@ public class MainActivity extends AppCompatActivity {
             updateQuantities();
         });
 
-        findViewById(R.id.increaseBurguerQuantity).setOnClickListener(v -> {
-            burguerQuantity++;
+        findViewById(R.id.increaseBurgerQuantity).setOnClickListener(v -> {
+            burgerQuantity++;
             updateQuantities();
         });
 
-        findViewById(R.id.decreaseBurguerQuantity).setOnClickListener(v -> {
-            if (burguerQuantity > 0) burguerQuantity--;
+        findViewById(R.id.decreaseBurgerQuantity).setOnClickListener(v -> {
+            if (burgerQuantity > 0) burgerQuantity--;
             updateQuantities();
         });
 
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(MainActivity.this, HomeActivity.class);
             intent.putExtra("pizzaQuantity", pizzaQuantity);
             intent.putExtra("hotDogQuantity", hotDogQuantity);
-            intent.putExtra("burguerQuantity", burguerQuantity);
+            intent.putExtra("burgerQuantity", burgerQuantity);
             intent.putExtra("carbonaraQuantity", carbonaraQuantity);
             startActivity(intent);
         });
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState != null) {
             pizzaQuantity = savedInstanceState.getInt("pizzaQuantity", 0);
             hotDogQuantity = savedInstanceState.getInt("hotDogQuantity", 0);
-            burguerQuantity = savedInstanceState.getInt("burguerQuantity", 0);
+            burgerQuantity = savedInstanceState.getInt("burgerQuantity", 0);
             carbonaraQuantity = savedInstanceState.getInt("carbonaraQuantity", 0);
             updateQuantities();
         }
@@ -97,11 +97,11 @@ public class MainActivity extends AppCompatActivity {
     private void updateQuantities() {
         pizzaQuantityTextView.setText(String.valueOf(pizzaQuantity));
         hotDogQuantityTextView.setText(String.valueOf(hotDogQuantity));
-        burguerQuantityTextView.setText(String.valueOf(burguerQuantity));
+        burgerQuantityTextView.setText(String.valueOf(burgerQuantity));
         carbonaraQuantityTextView.setText(String.valueOf(carbonaraQuantity));
 
         double totalPrice = (pizzaQuantity * pizzaPrice) + (hotDogQuantity * hotDogPrice) +
-                (burguerQuantity * burguerPrice) + (carbonaraQuantity * carbonaraPrice);
+                (burgerQuantity * burgerPrice) + (carbonaraQuantity * carbonaraPrice);
 
         checkoutButton.setText(String.format("Checkout: Total: €%.2f", totalPrice));
     }
@@ -111,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putInt("pizzaQuantity", pizzaQuantity);
         outState.putInt("hotDogQuantity", hotDogQuantity);
-        outState.putInt("burguerQuantity", burguerQuantity);
+        outState.putInt("burgerQuantity", burgerQuantity);
         outState.putInt("carbonaraQuantity", carbonaraQuantity);
     }
 }

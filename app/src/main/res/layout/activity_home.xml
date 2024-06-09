@@ -2,74 +2,29 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bac"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     tools:context=".HomeActivity">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:hint="Name"
-        app:layout_constraintBottom_toTopOf="@+id/textInputLayoutSurname"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/nameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutSurname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:hint="Surname"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutName">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/surnameEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutAddress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:hint="Address"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutSurname">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/addressEditText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <EditText
         android:id="@+id/phoneEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#F44336"
+        android:fontFamily="@font/roboto"
         android:hint="Phone"
         android:inputType="phone"
+        android:textColor="#373737"
+        android:textColorHighlight="#373737"
+        android:textColorHint="#F44336"
+        android:textColorLink="#F44336"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/addressEditText" />
 
     <RadioGroup
         android:id="@+id/paymentRadioGroup"
@@ -85,13 +40,23 @@
             android:id="@+id/cardRadioButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Card" />
+            android:buttonTint="#F44336"
+            android:text="Card"
+            android:textColor="#F44336"
+            android:textColorHint="#F44336"
+            android:textColorLink="#373737"
+            android:textStyle="bold" />
 
         <RadioButton
             android:id="@+id/cashRadioButton"
             android:layout_width="126dp"
             android:layout_height="wrap_content"
-            android:text="Cash" />
+            android:buttonTint="#F44336"
+            android:text="Cash"
+            android:textColor="#F44336"
+            android:textColorHint="#F44336"
+            android:textColorLink="#373737"
+            android:textStyle="bold" />
     </RadioGroup>
 
     <Switch
@@ -99,19 +64,74 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
+        android:buttonTint="#F44336"
+        android:fontFamily="@font/roboto"
+        android:shadowColor="#F44336"
         android:text="Agree to Terms and Conditions"
+        android:textColor="#F44336"
+        android:textColorHighlight="#F44336"
+        android:textColorHint="#F44336"
+        android:textColorLink="#F44336"
+        android:trackTint="#F44336"
         app:layout_constraintBottom_toTopOf="@+id/checkoutButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/checkoutButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:text="Go to Menu"
+        android:backgroundTint="#F44336"
+        android:fontFamily="@font/roboto"
+        android:text="Proceed to Checkout"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:cornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/nameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="#F44336"
+        android:fontFamily="@font/roboto"
+        android:hint="Name"
+        android:textColor="#373737"
+        android:textColorHighlight="#373737"
+        android:textColorHint="#F44336"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/surnameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#F44336"
+        android:fontFamily="@font/roboto"
+        android:hint="Surname"
+        android:textColor="#373737"
+        android:textColorHighlight="#373737"
+        android:textColorHint="#F44336"
+        app:layout_constraintTop_toBottomOf="@+id/nameEditText"
+        tools:layout_editor_absoluteX="17dp" />
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/addressEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#F44336"
+        android:fontFamily="@font/roboto"
+        android:hint="Address"
+        android:textColor="#373737"
+        android:textColorHighlight="#373737"
+        android:textColorHint="#F44336"
+        app:layout_constraintTop_toBottomOf="@+id/surnameEditText"
+        tools:layout_editor_absoluteX="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

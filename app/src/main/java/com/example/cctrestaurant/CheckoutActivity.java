@@ -165,7 +165,7 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private void showCustomToast() {
         ImageView imageView = new ImageView(this);
-        imageView.setImageResource(R.drawable.ic_order2);
+        imageView.setImageResource(R.drawable.ic_order);
 
         Toast toast = new Toast(getApplicationContext());
         toast.setDuration(Toast.LENGTH_SHORT);
